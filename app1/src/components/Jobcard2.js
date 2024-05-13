@@ -1,28 +1,19 @@
-// src/components/JobCard.js
+// JobCard.js
 import React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
 
 const JobCard = ({ job }) => {
     return (
-        <Card>
-            <CardContent>
-                <Typography variant="h6" component="h2">
-                    {job.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {job.company}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Location: {job.location}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Experience: {job.experience}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Description: {job.description}
-                </Typography>
-            </CardContent>
-        </Card>
+        <div className="job-card">
+            <img src={job.logoUrl} alt={job.companyName} />
+            <div className="job-details">
+                <h2>{job.companyName}</h2>
+                <p><strong>Job Role:</strong> {job.jobRole}</p>
+                <p><strong>Location:</strong> {job.location}</p>
+                <p><strong>Salary Range:</strong> {job.minJdSalary} - {job.maxJdSalary} {job.salaryCurrencyCode}</p>
+                <p><strong>Experience Range:</strong> {job.minExp || 'N/A'} - {job.maxExp || 'N/A'} years</p>
+                <p><strong>Job Details:</strong> {job.jobDetailsFromCompany}</p>
+            </div>
+        </div>
     );
 };
 
