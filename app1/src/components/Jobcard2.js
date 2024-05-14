@@ -1,18 +1,46 @@
-// JobCard.js
-import React from 'react';
+// components/JobCard.js
+import React, { useState } from 'react';
 
 const JobCard = ({ job }) => {
+    const [expanded, setExpanded] = useState(false);
+
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    };
+
     return (
         <div className="job-card">
-            <img src={job.logoUrl} alt={job.companyName} />
-            <div className="job-details">
-                <h2>{job.companyName}</h2>
-                <p><strong>Job Role:</strong> {job.jobRole}</p>
-                <p><strong>Location:</strong> {job.location}</p>
-                <p><strong>Salary Range:</strong> {job.minJdSalary} - {job.maxJdSalary} {job.salaryCurrencyCode}</p>
-                <p><strong>Experience Range:</strong> {job.minExp || 'N/A'} - {job.maxExp || 'N/A'} years</p>
-                <p><strong>Job Details:</strong> {job.jobDetailsFromCompany}</p>
+            <div className="job-header">
+                <div className="job-symbol">
+                    {job.logoUrl && <img src={job.logoUrl} alt={job.companyName} width="50" height="50" />}
+                </div>
+                <div className="job-details">
+                    <div className="job-name">{job.companyName}</div>
+                    <div className="job-info">
+                        <span className="job-info-title">Salary:</span> {job.minJdSalary} - {job.maxJdSalary}
+                    </div>
+                    <div className="job-info">
+                        <span className="job-info-title">Job Role:</span> {job.jobRole}
+                    </div>
+                    <div className="job-info">
+                        <span className="job-info-title">Experience:</span> {job.minExp} - {job.maxExp} years
+                    </div>
+                    <div className="job-info">
+                        <span className="job-info-title">Location:</span> {job.location}
+                    </div>
+                </div>
             </div>
+            <div className="job-actions">
+                <button className="apply-btn">Apply</button>
+                <button className="subscribe-btn">Subscribe to Premium</button>
+            </div>
+            <div className={`job-description ${expanded ? 'expanded' : ''}`}>
+                <p>{job.jobDetailsFromCompany}</p>
+                <button onClick={toggleExpanded}>View Less</button>
+            </div>
+            {!expanded && job.jobDetailsFromCompany.length > 100 && (
+                <button className="view-more-btn" onClick={toggleExpanded}>View More</button>
+            )}
         </div>
     );
 };

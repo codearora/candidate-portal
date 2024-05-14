@@ -1,0 +1,78 @@
+/* styles.css */
+.job-list-container {
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+select {
+    margin: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.job-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Set to three columns */
+    gap: 20px;
+}
+
+.job-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.job-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.job-symbol {
+    margin-right: 10px;
+}
+
+.job-details {
+    flex: 1;
+}
+
+.job-info {
+    margin-bottom: 5px;
+}
+
+.job-info-title {
+    font-weight: bold;
+}
+
+.job-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.apply-btn,
+.subscribe-btn,
+.view-more-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.job-description {
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.job-description.expanded {
+    max-height: none;
+}

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import JobCard from './components/Jobcard2';
 import jobsData from './jobs.json'; // Import the downloaded JSON file
+import './styles.css';
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -18,7 +19,7 @@ const App = () => {
   const jobRoles = [...new Set(jobs.map(job => job.jobRole))];
   const locations = [...new Set(jobs.map(job => job.location))];
   const experiences = Array.from({ length: 10 }, (_, i) => i + 1); // Experience values from 1 to 10
-  const basePays = [...new Set(jobs.map(job => job.minJdSalary !== null ? job.minJdSalary : 0))]; // Minimum base pay values, replace null with 0
+  const basePays = [...new Set(jobs.map(job => job.minJdSalary !== null ? job.minJdSalary : 0))]; // Minimum base pay values
 
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
@@ -40,18 +41,17 @@ const App = () => {
     setSelectedBasePay(event.target.value);
   };
 
-  const filteredJobs = jobs.filter(job => {
-    return (
+  const filteredJobs = jobs
+    .filter(job => (
       job.companyName.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedJobRole === '' || job.jobRole.toLowerCase() === selectedJobRole.toLowerCase()) &&
       (selectedLocation === '' || job.location.toLowerCase() === selectedLocation.toLowerCase()) &&
       (selectedExp === '' || (job.minExp <= parseInt(selectedExp) && job.maxExp >= parseInt(selectedExp))) &&
       (selectedBasePay === '' || (job.minJdSalary <= parseInt(selectedBasePay) && job.maxJdSalary >= parseInt(selectedBasePay)))
-    );
-  });
+    ));
 
   return (
-    <div>
+    <div className="job-list-container">
       <h1>Job Listings</h1>
       <input
         type="text"
@@ -84,8 +84,8 @@ const App = () => {
         ))}
       </select>
       <div className="job-list">
-        {filteredJobs.map(job => (
-          <JobCard key={job.jdUid} job={job} />
+        {filteredJobs.map((job, index) => (
+          <JobCard key={index} job={job} />
         ))}
       </div>
     </div>
