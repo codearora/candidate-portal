@@ -30,10 +30,6 @@ const JobCard = ({ job }) => {
                     </div>
                 </div>
             </div>
-            <div className="job-actions">
-                <button className="apply-btn">Apply</button>
-                <button className="subscribe-btn">Subscribe to Premium</button>
-            </div>
             <div className={`job-description ${expanded ? 'expanded' : ''}`}>
                 <p>{job.jobDetailsFromCompany}</p>
                 <button onClick={toggleExpanded}>View Less</button>
@@ -41,6 +37,10 @@ const JobCard = ({ job }) => {
             {!expanded && job.jobDetailsFromCompany.length > 100 && (
                 <button className="view-more-btn" onClick={toggleExpanded}>View More</button>
             )}
+            <div className="job-actions">
+                <button className="apply-btn">Apply</button>
+                <button className="subscribe-btn">Subscribe to Premium</button>
+            </div>
         </div>
     );
 };

@@ -1,63 +1,143 @@
 /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
 .job-list-container {
+    max-width: 1200px;
+    margin: 20px auto;
     padding: 20px;
-    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     margin-bottom: 20px;
+    color: #333;
 }
 
 input[type="text"],
 select {
     margin: 10px;
-    padding: 5px 10px;
+    padding: 10px;
+    width: calc(25% - 20px);
+    /* 25% for four items in a row */
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
+}
+
+select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px 20px;
+}
+
+.search-filters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .job-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* Set to three columns */
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .job-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    flex: 0 1 calc(33.3333% - 20px);
+    margin-bottom: 20px;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    /* Ensure padding is included in width calculation */
 }
 
-.job-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+.job-card:hover {
+    transform: translateY(-5px);
 }
 
-.job-symbol {
+.job-symbol img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     margin-right: 10px;
 }
 
 .job-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     flex: 1;
 }
 
 .job-info {
+    color: #666;
     margin-bottom: 5px;
 }
 
-.job-info-title {
-    font-weight: bold;
+.job-description {
+    margin-top: 20px;
+    display: none;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
+.expanded .job-description {
+    display: block;
+}
+
+
 .job-actions {
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }
 
 .apply-btn,
-.subscribe-btn,
+.subscribe-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.apply-btn:hover,
+.subscribe-btn:hover {
+    background-color: #0056b3;
+}
+
+.job-description {
+    margin-top: 20px;
+    display: none;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.expanded .job-description {
+    display: block;
+}
+
 .view-more-btn {
     background-color: #007bff;
     color: #fff;
@@ -65,14 +145,29 @@ select {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-.job-description {
-    max-height: 100px;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+.view-more-btn:hover {
+    background-color: #0056b3;
 }
 
-.job-description.expanded {
-    max-height: none;
+.search-filters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.search-filters>* {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+select {
+    flex: 0 1 auto;
+    width: 200px;
+    /* Adjust the width as needed */
 }
